@@ -12,17 +12,17 @@ const Event = ({ event }) => {
     return (
         <li className="event" key={event.id}>
             <h2>{event.summary}</h2>
-            <p>{event.start.dateTime}</p>
-            <p>{event.start.timeZone}</p>
-            <p>{event.location}</p>
+            <p><span>{event.start.dateTime}</span>  (Timezone <span>{event.start.timeZone}</span>)</p>
+            <p>@{event.summary} | <span>{event.location}</span></p>
             <button className='showDetailsButton' onClick={toggleDetails}>
                 {showDetails ? 'hide details' : 'show details'}
             </button>
             {showDetails ? (
                 <div className="eventDetails">
-                    <h3>Event Details</h3>
+                    <h4>About Event</h4>
+                    <p><a href={event.htmlLink} target="_blank">See details on Google Calendar</a></p>
                     <p>{event.description}</p>
-                    <p>{event.htmlLink}</p>
+
                 </div>) : null}
         </li>
     );

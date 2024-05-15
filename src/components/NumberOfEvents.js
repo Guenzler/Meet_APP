@@ -13,7 +13,7 @@ const NumberOfEvents = ({ setCurrentNOE }) => {
     return (
         <div id="number-of-events">
             <p>Number of Events:</p>
-            <p id="infoText">please enter number between 1 and 100</p>
+            <p id="infoText">enter number between 1 and 100</p>
             <input
                 className="numberOfEvents"
                 value={numberEvents}
