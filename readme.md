@@ -25,52 +25,52 @@ Scenario 1
 When user hasn’t searched for a city, show upcoming events from all cities.  
 Given the user has not searched for a city  
     When the user opens the app  
-    Then the app displays upcoming events from all cities  
+    Then the user should see the list of all upcoming events   
 
 Scenario 2  
 User should see a list of suggestions when they search for a city.  
-Given the user views the main page  
+Given the main page is open    
     When the user starts typing in the search field  
-    Then the app displays a list of suggestions that match the typed expression  
+    Then he user should recieve a list of cities (suggestions) that match what theyve typed    
 
 Scenario 3  
 User can select a city from the suggested list.  
-Given the user has typed something in the search field and a list of suggested cities is displayed  
+Given the user was typing something  in the city textbox and the list of suggestions is showing
     When the user selects a city from the suggested list  
-    Then the app will show a list of events in that city  
+    Then their city should be changed to that city the user should receive a list of upcoming events in that city    
 
 ### Feature 2: Show/Hide Event Details
 
 Scenario 1  
 An event element is collapsed by default.  
-Given the user scrolls through the event list  
+Given the event list is displayed    
     When the user has not clicked on an event  
     Then the event details are collapsed by default  
 
 Scenario 2  
 User can expand an event to see details.  
-Given the user scrolls through the event list  
-    When the user selects or interacts with the event element  
+Given the event list is displayed    
+    When the user clicks on an event    
     Then the app expands the event to display its details  
 
 Scenario 3  
 User can collapse an event to hide details.  
-Given there is an expanded event displayed on the app  
-    When the user selects or interacts with the event element  
+Given the event list is displayed   and one event is expanded  
+    When the user clicks the expanded element    
     Then the app collapses the event to hide its details  
 
 ### Feature 3: Specify Number of Events
 
 Scenario 1  
 When user hasn’t specified a number, 32 events are shown by default.  
-Given the user has not specified a number of events to display  
-    When the user is viewing a list of events  
+Given the list of events is displayed    
+    When the user has not typed in the number input field    
     Then the app displays 32 events by default  
 
 Scenario 2  
 User can change the number of events displayed.  
-Given the user is viewing a list of events  
-    When the user selects an option to change the number of events displayed  
+Given the list of events is displayed    
+    When the user types a number in the input field    
     Then the app updates the number of events displayed according to the user's selection  
 
 ### Feature 4: Use the App When Offline
