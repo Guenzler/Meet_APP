@@ -21,6 +21,17 @@ defineFeature(feature, test => {
 
         then('the user should see the list of all upcoming events.', async () => {
             const AppDOM = AppComponent.container.firstChild;
+
+             // Check that the loader is present initially
+             await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
+
             const EventListDOM = AppDOM.querySelector('#event-list');
 
             await waitFor(() => {
@@ -40,6 +51,17 @@ defineFeature(feature, test => {
         when('user starts typing in the city textbox', async () => {
             const user = userEvent.setup();
             const AppDOM = AppComponent.container.firstChild;
+
+             // Check that the loader is present initially
+             await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
+
             CitySearchDOM = AppDOM.querySelector('#city-search');
             const citySearchInput = within(CitySearchDOM).queryByRole('textbox');
             await user.type(citySearchInput, "Berlin");
@@ -61,6 +83,17 @@ defineFeature(feature, test => {
             AppComponent = render(<App />);
             const user = userEvent.setup();
             AppDOM = AppComponent.container.firstChild;
+
+             // Check that the loader is present initially
+             await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
+            
             CitySearchDOM = AppDOM.querySelector('#city-search');
             citySearchInput = within(CitySearchDOM).queryByRole('textbox');
             await user.type(citySearchInput, "Berlin");

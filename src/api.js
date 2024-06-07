@@ -11,31 +11,43 @@ const checkToken = async (accessToken) => {
 };
 
 export const getAccessToken = async () => {
-  const accessToken = localStorage.getItem('access_token');
-  const tokenCheck = accessToken && (await checkToken(accessToken));
+  try {
+    const accessToken = localStorage.getItem('access_token');
+    const tokenCheck = accessToken && (await checkToken(accessToken));
 
-  if (!accessToken || tokenCheck.error) {
-    await localStorage.removeItem("access_token");
-    const searchParams = new URLSearchParams(window.location.search);
-    const code = await searchParams.get("code");
-    if (!code) {
-      const response = await fetch(
-        "https://gmywoomilg.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url"
-      );
-      const result = await response.json();
-      const { authUrl } = result;
-      return (window.location.href = authUrl);
+    if (!accessToken || tokenCheck.error) {
+      await localStorage.removeItem("access_token");
+      const searchParams = new URLSearchParams(window.location.search);
+      const code = await searchParams.get("code");
+
+      if (!code) {
+        const response = await fetch("https://gmywoomilg.execute-api.eu-central-1.amazonaws.com/dev/api/get-auth-url");
+        if (!response.ok) {
+          console.error('Failed to fetch auth URL:', response.status, response.statusText);
+          throw new Error('Failed to fetch auth URL');
+        }
+
+        const result = await response.json();
+        const { authUrl } = result;
+
+        window.location.href = authUrl;
+        return;
+      }
+
+      return code && getToken(code);
     }
-    return code && getToken(code);
+
+    return accessToken;
+  } catch (error) {
+    console.error('Error in getAccessToken:', error);
+    throw error;
   }
-  return accessToken;
 };
 
 const getToken = async (code) => {
   try {
     const encodeCode = encodeURIComponent(code);
- 
-    const response = await fetch( 'https://gmywoomilg.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
+    const response = await fetch('https://gmywoomilg.execute-api.eu-central-1.amazonaws.com/dev/api/token' + '/' + encodeCode);
     if (!response.ok) {
       throw new Error(`HTTP error! status: ${response.status}`)
     }
@@ -45,7 +57,7 @@ const getToken = async (code) => {
   } catch (error) {
     error.json();
   }
- }
+};
 
 const removeQuery = () => {
   let newurl;

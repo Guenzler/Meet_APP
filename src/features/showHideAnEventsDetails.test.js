@@ -14,6 +14,17 @@ defineFeature(feature, test => {
         given('the event list is displayed', async () => {
             AppComponent = render(<App />);
             AppDOM = AppComponent.container.firstChild;
+
+            // Check that the loader is present initially
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
+
             EventListDOM = AppDOM.querySelector('#event-list');
 
             await waitFor(() => {
@@ -39,6 +50,17 @@ defineFeature(feature, test => {
         given('the event list is displayed', async () => {
             AppComponent = render(<App />);
             AppDOM = AppComponent.container.firstChild;
+
+            // Check that the loader is present initially
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
+
             EventListDOM = AppDOM.querySelector('#event-list');
 
             await waitFor(() => {
@@ -65,6 +87,16 @@ defineFeature(feature, test => {
         given('the event list is displayed', async () => {
             AppComponent = render(<App />);
             AppDOM = AppComponent.container.firstChild;
+
+            // Check that the loader is present initially
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+            });
+
+            // Wait for the loader to disappear
+            await waitFor(() => {
+                expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+            });
             EventListDOM = AppDOM.querySelector('#event-list');
 
             await waitFor(() => {

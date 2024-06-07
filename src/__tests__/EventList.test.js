@@ -29,10 +29,21 @@ describe('<EventList /> integration', () => {
     test('renders a list of 32 events when the app is mounted and rendered', async () => {
         const AppComponent = render(<App />);
         const AppDOM = AppComponent.container.firstChild;
+
+        // Check that the loader is present initially
+        await waitFor(() => {
+            expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+        });
+
+        // Wait for the loader to disappear
+        await waitFor(() => {
+            expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+        });
+        
         const EventListDOM = AppDOM.querySelector('#event-list');
         await waitFor(() => {
-          const EventListItems = within(EventListDOM).queryAllByRole('listitem');
-          expect(EventListItems.length).toBe(32);
+            const EventListItems = within(EventListDOM).queryAllByRole('listitem');
+            expect(EventListItems.length).toBe(32);
         });
-      });
+    });
 });

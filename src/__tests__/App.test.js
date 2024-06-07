@@ -1,14 +1,24 @@
 // src/__tests__/App.test.js
 
-import { render, within } from '@testing-library/react';
+import { render, within, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { getEvents } from '../api';
 import App from '../App';
 
 describe('<App /> component', () => {
     let AppDOM;
-    beforeEach(() => {
+    beforeEach(async () => {
         AppDOM = render(<App />).container.firstChild;
+
+        // Check that the loader is present initially
+        await waitFor(() => {
+            expect(AppDOM.querySelector('.loader')).toBeInTheDocument();
+        });
+
+        // Wait for the loader to disappear
+        await waitFor(() => {
+            expect(AppDOM.querySelector('.loader')).not.toBeInTheDocument();
+        });
     })
 
 
