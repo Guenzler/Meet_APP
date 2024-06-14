@@ -8,6 +8,7 @@ import Loader from './components/Loader';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
+import CityEventsChart from './components/CityEventsChart'
 
 const App = () => {
 
@@ -56,6 +57,7 @@ const App = () => {
       <NumberOfEvents
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert} />
+      <CityEventsChart allLocations={allLocations} events={events} />
       {isDataLoading ? <Loader /> : <EventList events={events} />}
     </div>
   );
