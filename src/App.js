@@ -8,7 +8,8 @@ import Loader from './components/Loader';
 import { extractLocations, getEvents } from './api';
 import './App.css';
 import { InfoAlert, ErrorAlert, WarningAlert } from './components/Alert';
-import CityEventsChart from './components/CityEventsChart'
+import CityEventsChart from './components/CityEventsChart';
+import EventGenresChart from './components/EventGenresChart';
 
 const App = () => {
 
@@ -54,11 +55,20 @@ const App = () => {
         allLocations={allLocations}
         setCurrentCity={setCurrentCity}
         setInfoAlert={setInfoAlert} />
+
       <NumberOfEvents
         setCurrentNOE={setCurrentNOE}
         setErrorAlert={setErrorAlert} />
-      <CityEventsChart allLocations={allLocations} events={events} />
-      {isDataLoading ? <Loader /> : <EventList events={events} />}
+
+      {isDataLoading ? <Loader /> : null}
+
+      <div className="charts-container">
+        <EventGenresChart events={events} />
+        <CityEventsChart allLocations={allLocations} events={events} />
+      </div>
+
+      <EventList events={events} />
+      
     </div>
   );
 }
