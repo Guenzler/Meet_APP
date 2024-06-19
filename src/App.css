@@ -114,7 +114,7 @@ input[type="number"] {
 
 .charts-container {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1.1fr 0.9fr;
 }
 
 @media all and (max-width: 850px) {
