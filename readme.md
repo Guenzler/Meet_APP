@@ -107,5 +107,23 @@ Given there are upcoming events from multiple cities
 
 ## Serverless functions
 In this app, serverless functions will handle the process of authorization.
-When the user opens the initial page, AWS Lambda functions contact the authorization server (Google Oauth provider), which returns the Google login page. After the user successfully logs in, the serverless functions communicate with the authorization server and receive an access token, which is then used to access the Google Calender API. 
-Serverless technology will be used because it is more efficient and cost-effective than maintaining a dedicated server infrastructure.
+When the user opens the initial page, AWS Lambda functions contact the authorization server (Google Oauth provider), which returns the Google login page. After the user successfully logs in, serverless functions communicate with the authorization server and receive an access token, which is then used to access the Google Calender API. 
+Serverless technology is used because it is more efficient and cost-effective than maintaining a dedicated server infrastructure.
+
+## Technologies used in project
+JavaScript  
+React  
+AWS Lambda functions 
+Google Calender API  
+Test Driven Development  
+Test runner jest for unit and integration tests  
+Jest-cucumber for acceptance tests  
+Pupeteer for end-to-end tests  
+gh-pages for deploying and hosting with GitHub Pages  
+Web App Manifest and Service Worker implemented to convert app into a Progressive Web Application  
+Recharts for data visualization  
+
+## View project
+The app is hosted with gh pages:  
+[https://guenzler.github.io/Meet_APP/](https://guenzler.github.io/Meet_APP/)  
+Login with a Google Account is required to view the App
